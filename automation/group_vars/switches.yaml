@@ -1,0 +1,103 @@
+node:
+  switch01:
+    mlag:
+      address:
+      backupip:
+      members:
+      peerip:
+      sysmac:
+      interfaces:
+        bond01:
+          clagid:
+          members:
+          mode:
+          vlans:
+    overlay:
+      anycastip:
+      vxlan:
+        vni11:
+          vlan: "11"
+    ports:
+      - swp1
+      - swp2
+      - swp10
+    lacp:
+      interfaces:
+        members:
+    switching:
+      swp10:
+        mode: access
+        vlans:
+          - "11"
+    routing:
+      lo: 10.1.1.1/32
+      ospf:
+        area:
+        neighbors:
+      bgp:
+        asn: 65111
+        underlay:
+          external:
+            peers:
+              - swp1
+              - swp2
+          internal:
+            peers:
+      svi:
+        interface:
+          ip:
+          vlan:
+          vrrp:
+            mac:
+            ip:
+  switch02:
+    mlag:
+      address:
+      backupip:
+      members:
+      peerip:
+      sysmac:
+      interfaces:
+        bond01:
+          clagid:
+          members:
+          mode:
+          vlans:
+    overlay:
+      anycastip:
+      vxlan:
+        vni11:
+          vlan: "11"
+    ports:
+      - swp1
+      - swp2
+      - swp10
+    lacp:
+      interfaces:
+        members:
+    switching:
+      swp10:
+        mode: access
+        vlans:
+          - "11"
+    routing:
+      lo: 10.2.2.2/32
+      ospf:
+        area:
+        neighbors:
+      bgp:
+        asn: 65222
+        underlay:
+          external:
+            peers:
+              - swp1
+              - swp2
+          internal:
+            peers:
+      svi:
+        interface:
+          ip:
+          vlan:
+          vrrp:
+            mac:
+            ip:
