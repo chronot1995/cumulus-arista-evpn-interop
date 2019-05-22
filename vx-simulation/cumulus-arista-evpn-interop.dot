@@ -5,9 +5,9 @@ graph training {
  "server02" [function="host" os="yk0/ubuntu-xenial" memory="512" config="./helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.12"]
 
 
- "switch01":"swp1" -- "switch02":"Ethernet3"
- "switch01":"swp2" -- "switch02":"Ethernet4"
+ "switch01":"swp2" -- "switch02":"Ethernet2"
+ "switch01":"swp3" -- "switch02":"Ethernet3"
  "server01":"eth1" -- "switch01":"swp10"
- "server02":"eth1" -- "switch02":"Ethernet2"
+ "server02":"eth1" -- "switch02":"Ethernet4"
 
  }

@@ -1,7 +1,7 @@
 # The loopback network interface
 auto lo
 iface lo inet loopback
-   address 10.0.0.1/32
+   address 10.1.1.1/32
 
 auto eth0
 iface eth0 inet dhcp
@@ -15,13 +15,13 @@ iface mgmt
   address 127.0.0.1/8
   vrf-table auto
 
-auto swp1
-iface swp1
+auto swp2
+iface swp2
     address 172.16.31.1/30
     mtu 9000
 
-auto swp2
-iface swp2
+auto swp3
+iface swp3
     address 172.16.31.5/30
     mtu 9000
 
@@ -37,7 +37,7 @@ iface vni11
   mstpctl-bpduguard yes
   mstpctl-portbpdufilter yes
   vxlan-id 11
-  vxlan-local-tunnelip 10.0.0.1
+  vxlan-local-tunnelip 10.1.1.1
 
 auto bridge
 iface bridge

@@ -39,7 +39,7 @@ interface Ethernet4
 !
 interface Loopback0
    description ROUTER-ID
-   ip address 10.0.0.2/32
+   ip address 10.2.2.2/32
 !
 interface Management1
    ip address dhcp
@@ -61,20 +61,20 @@ ip routing
 !
 ipv6 unicast-routing
 !
-router bgp 65012
-   router-id 10.0.0.2
+router bgp 65222
+   router-id 10.2.2.2
    maximum-paths 2 ecmp 2
    neighbor SPINE peer-group
-   neighbor SPINE remote-as 65011
+   neighbor SPINE remote-as 65111
    neighbor SPINE send-community extended
    neighbor SPINE maximum-routes 12000
    neighbor 172.16.31.1 peer-group SPINE
    neighbor 172.16.31.5 peer-group SPINE
    !
    vlan 11
-      rd 65012:11
-      route-target both 65012:11
-      route-target import 65011:11
+      rd 65222:11
+      route-target both 65222:11
+      route-target import 65111:11
       redistribute learned
    !
    address-family evpn
@@ -82,7 +82,7 @@ router bgp 65012
    !
    address-family ipv4
       neighbor SPINE activate
-      network 10.0.0.2/32
+      network 10.2.2.2/32
    !
 !
 management api http-commands
