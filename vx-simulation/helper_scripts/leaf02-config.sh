@@ -16,8 +16,6 @@ username vagrant sshkey ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTky
 !
 vlan 11
 !
-vrf definition vrf1
-!
 interface Ethernet1
    description Management
    no switchport
@@ -60,7 +58,6 @@ event-handler COPY-STARTUP-TO-RUNNING
    delay 70
 !
 ip routing
-ip routing vrf vrf1
 !
 ipv6 unicast-routing
 !
