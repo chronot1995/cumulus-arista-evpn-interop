@@ -5,7 +5,6 @@
 
 [switches]
 switch01 ansible_host=192.168.200.1
-switch02 ansible_host=192.168.200.2
 
 [servers]
 server01 ansible_host=192.168.200.11

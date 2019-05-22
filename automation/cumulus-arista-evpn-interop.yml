@@ -1,5 +1,5 @@
 #####
-# Host config for begin-training-bgp-j2
+# Host config for cumulus-arista-evpn-interop
 #####
 
 - hosts: switches
