@@ -4,6 +4,12 @@ Two Linux servers, one Cumulus VX switch, and one Arista vEOS switch configured 
 
 ### WORK IN PROGRESS
 
-h/t Jason Van Patten:
+### Network Diagram:
+
+![Network Diagram](https://github.com/chronot1995/cumulus-arista-evpn-interop/blob/master/documentation/cumulus-arista-evpn-interop.png)
+
+###
+
+I would like to thank Jason Van Patten for his invaluable blog post and his time on Slack:
 
 https://www.jasonvanpatten.com/2018/11/15/cumulus-and-arista-evpn-configuration/
