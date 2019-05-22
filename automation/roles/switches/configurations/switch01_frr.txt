@@ -1,18 +1,26 @@
-frr version 4.0+cl3u11
+frr version 3.2+cl3u4
 frr defaults datacenter
-hostname switch01
+!
 username cumulus nopassword
 !
 service integrated-vtysh-config
 !
 log syslog informational
 !
+interface swp1
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
+interface swp2
+ ipv6 nd ra-interval 10
+ no ipv6 nd suppress-ra
+!
 router bgp 65011
  bgp router-id 10.0.0.1
  bgp bestpath as-path multipath-relax
  neighbor 172.16.31.2 remote-as 65012
  neighbor 172.16.31.6 remote-as 65012
- !
+!
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
@@ -20,6 +28,7 @@ router bgp 65011
  address-family l2vpn evpn
   neighbor 172.16.31.2 activate
   neighbor 172.16.31.6 activate
+  advertise-all-vni
  exit-address-family
 !
 line vty

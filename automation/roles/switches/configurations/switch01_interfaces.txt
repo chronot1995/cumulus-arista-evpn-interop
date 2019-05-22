@@ -1,0 +1,47 @@
+# The loopback network interface
+auto lo
+iface lo inet loopback
+   address 10.0.0.1/32
+
+auto eth0
+iface eth0 inet dhcp
+ vrf mgmt
+
+auto vagrant
+iface vagrant inet dhcp
+
+auto mgmt
+iface mgmt
+  address 127.0.0.1/8
+  vrf-table auto
+
+auto swp1
+iface swp1
+    address 172.16.31.1/30
+    mtu 9000
+
+auto swp2
+iface swp2
+    address 172.16.31.5/30
+    mtu 9000
+
+auto swp10
+iface swp10
+   bridge-access 11
+
+auto vni11
+iface vni11
+  bridge-access 11
+  bridge-arp-nd-suppress on
+  bridge-learning off
+  mstpctl-bpduguard yes
+  mstpctl-portbpdufilter yes
+  vxlan-id 11
+  vxlan-local-tunnelip 10.0.0.1
+
+auto bridge
+iface bridge
+    bridge-ports swp10 vni11
+    bridge-pvid 1
+    bridge-vids 11
+    bridge-vlan-aware yes
