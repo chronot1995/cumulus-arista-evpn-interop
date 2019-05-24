@@ -204,8 +204,10 @@ You will need to run the following:
 
 2. switch02 requires a username and password to SSH into the device:
 
+```
 Username: cumulus
 Password: CumulusLinux!
+```
 
 ### Shout out / Thanks!
 
