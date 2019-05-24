@@ -123,13 +123,84 @@ Route Distinguisher: 10.1.1.1:2
 
 ### Arista Troubleshooting and Verification
 
+This will show the routes that are received via BGP from the Cumulus Linux switch.
+
+```
+switch02#show ip route bgp
+
+VRF: default
+Codes: C - connected, S - static, K - kernel,
+       O - OSPF, IA - OSPF inter area, E1 - OSPF external type 1,
+       E2 - OSPF external type 2, N1 - OSPF NSSA external type 1,
+       N2 - OSPF NSSA external type2, B I - iBGP, B E - eBGP,
+       R - RIP, I L1 - IS-IS level 1, I L2 - IS-IS level 2,
+       O3 - OSPFv3, A B - BGP Aggregate, A O - OSPF Summary,
+       NG - Nexthop Group Static Route, V - VXLAN Control Service,
+       DH - DHCP client installed default route, M - Martian,
+       DP - Dynamic Policy Route
+
+ B E    10.1.1.1/32 [200/0] via 172.16.31.1, Ethernet2
+                            via 172.16.31.5, Ethernet3
+```
+
+This is a summary command that will show that there are two eBGP connections coming from AS65111, the Cumulus switch, and are being received on the Arista switch.
+
+```
+switch02#show bgp evpn summary
+BGP summary information for VRF default
+Router identifier 10.2.2.2, local AS number 65222
+Neighbor Status Codes: m - Under maintenance
+  Neighbor         V  AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State  PfxRcd PfxAcc
+  172.16.31.1      4  65111            201       228    0    0 00:09:26 Estab  2      2
+  172.16.31.5      4  65111            201       230    0    0 00:09:26 Estab  2      2
+```
+This will show all of the Type-2 and Type-3 routes coming from the Cumulus switch, AS65111. The MAC address of "44:38:39:00:00:05" is from server01 and learned via EVPN.
+
+```
+switch02#show bgp evpn vni 11
+BGP routing table information for VRF default
+Router identifier 10.2.2.2, local AS number 65222
+Route status codes: s - suppressed, * - valid, > - active, # - not installed, E - ECMP head, e - ECMP
+                    S - Stale, c - Contributing to ECMP, b - backup
+                    % - Pending BGP convergence
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+         Network             Next Hop         Metric  LocPref Weight Path
+ * >Ec   RD: 10.1.1.1:2 mac-ip 4438.3900.0005
+                             10.1.1.1         -       100     0      65111 i
+ *  ec   RD: 10.1.1.1:2 mac-ip 4438.3900.0005
+                             10.1.1.1         -       100     0      65111 i
+ * >Ec   RD: 10.1.1.1:2 imet 10.1.1.1
+                             10.1.1.1         -       100     0      65111 i
+ *  ec   RD: 10.1.1.1:2 imet 10.1.1.1
+                             10.1.1.1         -       100     0      65111 i
+ * >     RD: 65222:11 imet 10.2.2.2
+                             -                -       -       0       i
+```
+
+A detailed looked at this table will show the Route Targets that are being received and imported from the Cumulus switch:
+
+```
+switch02#show bgp evpn detail
+BGP routing table information for VRF default
+Router identifier 10.2.2.2, local AS number 65222
+BGP routing table entry for mac-ip 4438.3900.0005, Route Distinguisher: 10.1.1.1:2
+ Paths: 2 available
+  65111
+    10.1.1.1 from 172.16.31.1 (10.1.1.1)
+      Origin IGP, metric -, localpref 100, weight 0, valid, external, ECMP head, best, ECMP contributor
+      Extended Community: Route-Target-AS:65111:11 TunnelEncap:tunnelTypeVxlan
+      VNI: 11 ESI: 0000:0000:0000:0000:0000
+```
+
 ### BUGS
 
 1. There is an .iso file mounted as a DVD on the vEOS image. For whatever reason, it stays in the local directory when you do a ```vagrant destroy -f```
 
 You will need to run the following:
 
-```rm -rf $HOME/VirtualBox VMs/*_switch02```
+```rm -rf $HOME/VirtualBox\ VMs/*_switch02```
 
 2. switch02 requires a username and password to SSH into the device:
 
