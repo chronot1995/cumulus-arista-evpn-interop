@@ -143,7 +143,7 @@ Codes: C - connected, S - static, K - kernel,
                             via 172.16.31.5, Ethernet3
 ```
 
-This is a summary command that will show that there are two eBGP connections coming from AS65111, the Cumulus switch, and are being received on the Arista switch.
+This will show that there are two eBGP connections established between AS65111, the Cumulus switch, and the Arista switch.
 
 ```
 switch02#show bgp evpn summary
