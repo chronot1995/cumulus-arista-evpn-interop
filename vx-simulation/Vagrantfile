@@ -165,7 +165,7 @@ end
     device.vm.hostname = "oob-mgmt-switch"
 
     device.vm.box = "CumulusCommunity/cumulus-vx"
-    device.vm.box_version = "3.7.6"
+    device.vm.box_version = "3.7.8"
     device.vm.provider "virtualbox" do |v|
       v.name = "#{simid}_oob-mgmt-switch"
       v.customize ["modifyvm", :id, '--audiocontroller', 'AC97', '--audio', 'Null']
@@ -265,7 +265,7 @@ end
     device.vm.hostname = "switch01"
 
     device.vm.box = "CumulusCommunity/cumulus-vx"
-    device.vm.box_version = "3.7.6"
+    device.vm.box_version = "3.7.8"
     device.vm.provider "virtualbox" do |v|
       v.name = "#{simid}_switch01"
       v.customize ["modifyvm", :id, '--audiocontroller', 'AC97', '--audio', 'Null']
