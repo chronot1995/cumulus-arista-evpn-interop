@@ -389,7 +389,7 @@ config.vm.define "switch02" do |device|
   end
 
   # NETWORK INTERFACES
-    # link for Ethernet1 / nic2 --> oob-mgmt-switch:swp5
+    # link for Ethernet1 / nic2 --> oob-mgmt-switch:swp3
     device.vm.network "private_network", virtualbox__intnet: "#{simid}_net8", auto_config: false , :mac => "443839000012"
 
     # link for Ethernet2 / nic3 --> switch01:swp1
@@ -504,7 +504,7 @@ end
 
     # NETWORK INTERFACES
       # link for eth0 --> oob-mgmt-switch:swp5
-      device.vm.network "private_network", virtualbox__intnet: "#{simid}_net10", auto_config: false , :mac => "443839000012"
+      device.vm.network "private_network", virtualbox__intnet: "#{simid}_net10", auto_config: false , :mac => "443839000014"
 
       # link for eth1 --> switch02:Ethernet2
       device.vm.network "private_network", virtualbox__intnet: "#{simid}_net4", auto_config: false , :mac => "443839000007"
