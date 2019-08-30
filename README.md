@@ -1,5 +1,9 @@
 ### cumulus-arista-evpn-interop
 
+### NOTES:
+
+The Libvirt integration is a work in progress and currently does not work as expected
+
 ### Summary:
 
   - Cumulus Linux 3.7.8
@@ -62,6 +66,8 @@ First, make sure that the following is currently running on your machine:
 3a. Run the following for Virtualbox:
 
     ```./start-vagrant-vbox-poc.sh```
+
+    Note: The Arista VM takes a little time to boot and may appear hung at the "SSH auth method: private key" message - give it a minute or two, it should work.
 
 3b. Run the following for Libvirt:
 
@@ -293,6 +299,6 @@ Here is my veos.json file:
 
 The "url" path will be dependent on your machine.
 
-On the Linux / Libvirt side, you need to "mutate" the file from Virtualbox to Libvirt. Here are the instructions that I used: 
+On the Linux / Libvirt side, you need to "mutate" the file from Virtualbox to Libvirt. Here are the instructions that I used:
 
 https://medium.com/@gamunu/use-vagrant-with-libvirt-unsupported-boxes-12e719d71e8e
