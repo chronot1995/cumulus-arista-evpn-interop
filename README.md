@@ -1,40 +1,82 @@
 ### cumulus-arista-evpn-interop
 
+### Summary:
+
+  - Cumulus Linux 3.7.8
+  - Underlying Topology Converter to 4.7.0
+  - Tested against Vagrant 2.1.5 on Mac and Linux. Windows is not supported
+  - Tested against Virtualbox 5.2.32 on Mac 10.14
+  - Tested against Libvirt 1.3.1 and Ubuntu 16.04 LTS
+  - Tested against Arista vEOS 4.21.1.1F
+
+### Description:
+
 Two Linux servers, one Cumulus VX switch, and one Arista vEOS switch, configured with BGP and EVPN / VXLAN in a Cumulus / Arista interop.
 
 ### Network Diagram:
 
 ![Network Diagram](https://github.com/chronot1995/cumulus-arista-evpn-interop/blob/master/documentation/cumulus-arista-evpn-interop.png)
 
-### Initializing the demo environment:
+### Install and Setup Virtualbox on Mac
 
-First, make sure that the following is currently running on your machine:
+Setup Vagrant for the first time on Mojave, MacOS 10.14.6
 
-1. Vagrant > version 2.1.5
+1. Install Homebrew 2.1.9 (This will also install Xcode Command Line Tools)
 
-    https://www.vagrantup.com/
+    https://brew.sh
 
-2. Virtualbox > version 5.2.20
+2. Install Virtualbox (Tested with 5.2.32)
 
     https://www.virtualbox.org
 
-3. Copy the Git repo to your local machine:
+I had to go through the install process twice to load the proper security extensions (System Preferences > Security & Privacy > General Tab > "Allow" on bottom)
+
+3. Install Vagrant (Tested with 2.1.5)
+
+    https://www.vagrantup.com
+
+### Install and Setup Linux / libvirt demo environment:
+
+First, make sure that the following is currently running on your machine:
+
+1. This demo was tested on a Ubuntu 16.04 VM w/ 4 processors and 32Gb of Diagram
+
+2. Following the instructions at the following link:
+
+    https://docs.cumulusnetworks.com/cumulus-vx/Development-Environments/Vagrant-and-Libvirt-with-KVM-or-QEMU/
+
+3. Download the latest Vagrant, 2.1.5, from the following location:
+
+    https://www.vagrantup.com/
+
+### Initializing the demo environment:
+
+1. Copy the Git repo to your local machine:
 
     ```git clone https://github.com/chronot1995/cumulus-arista-evpn-interop```
 
-4. Change directories to the following
+2. Change directories to the following
 
     ```cumulus-arista-evpn-interop```
 
-6. Run the following:
+3a. Run the following for Virtualbox:
 
-    ```./start-vagrant-poc.sh```
+    ```./start-vagrant-vbox-poc.sh```
+
+3b. Run the following for Libvirt:
+
+    ```./start-vagrant-libvirt-poc.sh```
 
 ### Running the Ansible Playbook
 
-1. SSH into the oob-mgmt-server:
+1a. SSH into the Virtualbox oob-mgmt-server:
 
-    ```cd vx-simulation```   
+    ```cd vx-vbox-simulation```   
+    ```vagrant ssh oob-mgmt-server```
+
+1a. SSH into the Libvirt oob-mgmt-server:
+
+    ```cd vx-libvirt-simulation```   
     ```vagrant ssh oob-mgmt-server```
 
 2. Copy the Git repo unto the oob-mgmt-server:
@@ -217,7 +259,7 @@ https://www.jasonvanpatten.com/2018/11/15/cumulus-and-arista-evpn-configuration/
 
 ### CAVEATS
 
-1. You will need to download the latest version of Arista'a vEOS from their website:
+1. You will need to download Arista'a vEOS 4.21.1.1F from their suppport website:
 
 https://www.arista.com/en/support/software-download
 
@@ -250,3 +292,7 @@ Here is my veos.json file:
 ```
 
 The "url" path will be dependent on your machine.
+
+On the Linux / Libvirt side, you need to "mutate" the file from Virtualbox to Libvirt. Here are the instructions that I used: 
+
+https://medium.com/@gamunu/use-vagrant-with-libvirt-unsupported-boxes-12e719d71e8e
