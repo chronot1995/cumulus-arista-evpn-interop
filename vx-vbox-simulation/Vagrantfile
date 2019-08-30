@@ -402,11 +402,11 @@ config.vm.define "switch02" do |device|
     device.vm.network "private_network", virtualbox__intnet: "#{simid}_net4", auto_config: false , :mac => "443839000002"
 
 
-  device.vm.provider "virtualbox" do |vbox|
-    vbox.customize ['modifyvm', :id, "--nic3", "intnet", "--intnet3", "#{simid}_net1"]
-    vbox.customize ['modifyvm', :id, "--nic4", "intnet", "--intnet4", "#{simid}_net2"]
-    vbox.customize ['modifyvm', :id, "--nic5", "intnet", "--intnet5", "#{simid}_net4"]
-  end
+#  device.vm.provider "virtualbox" do |vbox|
+#    vbox.customize ['modifyvm', :id, "--nic3", "intnet", "--intnet3", "#{simid}_net1"]
+#    vbox.customize ['modifyvm', :id, "--nic4", "intnet", "--intnet4", "#{simid}_net2"]
+#    vbox.customize ['modifyvm', :id, "--nic5", "intnet", "--intnet5", "#{simid}_net4"]
+#  end
 
   device.vm.provision :shell , path: "./helper_scripts/leaf02-config.sh"
 

@@ -2,7 +2,7 @@
 
 ### NOTES:
 
-The Libvirt integration is a work in progress and currently does not work as expected
+This repo is a work in progess
 
 ### Summary:
 
