@@ -179,6 +179,10 @@ end
     device.vm.hostname = "oob-mgmt-switch"
     device.vm.box_version = "3.7.8"
     device.vm.box = "CumulusCommunity/cumulus-vx"
+<<<<<<< HEAD:vx-vbox-simulation/Vagrantfile
+=======
+    device.vm.box_version = "3.7.8"
+>>>>>>> c5c68b11734f113693f01681aa1d1819409e7e61:vx-simulation/Vagrantfile
     device.vm.provider "virtualbox" do |v|
       v.name = "#{simid}_oob-mgmt-switch"
       v.customize ["modifyvm", :id, '--audiocontroller', 'AC97', '--audio', 'Null']
