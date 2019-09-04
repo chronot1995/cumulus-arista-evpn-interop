@@ -17,12 +17,12 @@ iface mgmt
 
 auto swp2
 iface swp2
-    address 172.16.31.1/30
+    address 172.16.31.5/30
     mtu 9000
 
 auto swp3
 iface swp3
-    address 172.16.31.5/30
+    address 172.16.31.9/30
     mtu 9000
 
 auto swp10

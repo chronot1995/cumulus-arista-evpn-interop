@@ -179,7 +179,6 @@ end
     device.vm.hostname = "oob-mgmt-switch"
     device.vm.box_version = "3.7.8"
     device.vm.box = "CumulusCommunity/cumulus-vx"
-    device.vm.box_version = "3.7.8"
     device.vm.provider "virtualbox" do |v|
       v.name = "#{simid}_oob-mgmt-switch"
       v.customize ["modifyvm", :id, '--audiocontroller', 'AC97', '--audio', 'Null']
@@ -382,7 +381,7 @@ config.vm.define "switch02" do |device|
   device.vm.hostname = "switch02"
 
   device.vm.box = "arista/veos"
-  device.vm.box_version = "4.21.1.1F"
+  device.vm.box_version = "4.19.10M"
   device.vm.provider "virtualbox" do |v|
     v.name = "#{simid}_switch02"
     v.memory = 3072
@@ -402,11 +401,11 @@ config.vm.define "switch02" do |device|
     device.vm.network "private_network", virtualbox__intnet: "#{simid}_net4", auto_config: false , :mac => "443839000002"
 
 
-#  device.vm.provider "virtualbox" do |vbox|
-#    vbox.customize ['modifyvm', :id, "--nic3", "intnet", "--intnet3", "#{simid}_net1"]
-#    vbox.customize ['modifyvm', :id, "--nic4", "intnet", "--intnet4", "#{simid}_net2"]
-#    vbox.customize ['modifyvm', :id, "--nic5", "intnet", "--intnet5", "#{simid}_net4"]
-#  end
+  device.vm.provider "virtualbox" do |vbox|
+    vbox.customize ['modifyvm', :id, "--nic3", "intnet", "--intnet3", "#{simid}_net1"]
+    vbox.customize ['modifyvm', :id, "--nic4", "intnet", "--intnet4", "#{simid}_net2"]
+    vbox.customize ['modifyvm', :id, "--nic5", "intnet", "--intnet5", "#{simid}_net4"]
+  end
 
   device.vm.provision :shell , path: "./helper_scripts/leaf02-config.sh"
 
