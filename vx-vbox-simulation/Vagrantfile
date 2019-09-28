@@ -407,7 +407,7 @@ config.vm.define "switch02" do |device|
     vbox.customize ['modifyvm', :id, "--nic5", "intnet", "--intnet5", "#{simid}_net4"]
   end
 
-  device.vm.provision :shell , path: "./helper_scripts/leaf02-config.sh"
+  device.vm.provision :shell , path: "./helper_scripts/arista-config/leaf02-config.sh"
 
 end
 

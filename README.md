@@ -6,7 +6,7 @@ This repo is a work in progess
 
 ### Summary:
 
-  - Cumulus Linux 3.7.8
+  - Cumulus Linux 3.7.9
   - Underlying Topology Converter to 4.7.0
   - Tested against Vagrant 2.1.5 on Mac and Linux. Windows is not supported
   - Tested against Virtualbox 5.2.32 on Mac 10.14
@@ -57,45 +57,63 @@ First, make sure that the following is currently running on your machine:
 
 1. Copy the Git repo to your local machine:
 
-    ```git clone https://github.com/chronot1995/cumulus-arista-evpn-interop```
+    ```
+    git clone https://github.com/chronot1995/cumulus-arista-evpn-interop
+    ```
 
 2. Change directories to the following
 
-    ```cumulus-arista-evpn-interop```
+    ```
+    cumulus-arista-evpn-interop
+    ```
 
 3a. Run the following for Virtualbox:
 
-    ```./start-vagrant-vbox-poc.sh```
+    ```
+    ./start-vagrant-vbox-poc.sh
+    ```
 
     Note: The Arista VM takes a little time to boot and may appear hung at the "SSH auth method: private key" message - give it a minute or two, it should work.
 
 3b. Run the following for Libvirt:
 
-    ```./start-vagrant-libvirt-poc.sh```
+    ```
+    ./start-vagrant-libvirt-poc.sh
+    ```
 
 ### Running the Ansible Playbook
 
 1a. SSH into the Virtualbox oob-mgmt-server:
 
-    ```cd vx-vbox-simulation```   
-    ```vagrant ssh oob-mgmt-server```
+    ```
+    cd vx-vbox-simulation  
+    vagrant ssh oob-mgmt-server
+    ```
 
 1a. SSH into the Libvirt oob-mgmt-server:
 
-    ```cd vx-libvirt-simulation```   
-    ```vagrant ssh oob-mgmt-server```
+    ```
+    cd vx-libvirt-simulation   
+    vagrant ssh oob-mgmt-server
+    ```
 
 2. Copy the Git repo unto the oob-mgmt-server:
 
-    ```git clone https://github.com/chronot1995/cumulus-arista-evpn-interop```
+    ```
+    git clone https://github.com/chronot1995/cumulus-arista-evpn-interop
+    ```
 
 3. Change directories to the following
 
-    ```cumulus-arista-evpn-interop/automation```
+    ```
+    cumulus-arista-evpn-interop/automation
+    ```
 
 4. Run the following:
 
-    ```./provision.sh```
+    ```
+    ./provision.sh
+    ```
 
 This will run the automation script and configure the environment.
 
@@ -296,9 +314,3 @@ Here is my veos.json file:
   ]
 }
 ```
-
-The "url" path will be dependent on your machine.
-
-On the Linux / Libvirt side, you need to "mutate" the file from Virtualbox to Libvirt. Here are the instructions that I used:
-
-https://medium.com/@gamunu/use-vagrant-with-libvirt-unsupported-boxes-12e719d71e8e
