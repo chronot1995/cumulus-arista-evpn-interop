@@ -1,5 +1,7 @@
 ### cumulus-arista-evpn-interop
 
+### DEPRECATED - Please check out Nvidia Air at https://air.nvidia.com for up-to-date examples
+
 ### NOTES:
 
 This repo is a work in progess
